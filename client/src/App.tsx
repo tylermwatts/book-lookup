@@ -1,21 +1,28 @@
 import * as React from 'react';
 import './App.css';
+import ResultTable from './Components/ResultTable';
 import SearchField from './Components/SearchField';
+import TitleDisplay from './Components/TitleDisplay';
 import { Book } from './types/Book';
 
 function App() {
-  const initBook: Book = {
-    author: 'Some Author',
-    title: 'Title: Subtitle',
-    description: 'Description of the book.',
+  const initDisplayed: Book = {
+    author: 'Author',
+    title: 'Title',
+    subtitle: 'Subtitle',
+    description: 'Book description',
     thumbnail: '#',
     link: '#',
-    ISBN: '1234567891234'
+    ISBN: '0123456789123'
   };
-  const [book, setBook] = React.useState(initBook);
+
+  const [displayed, setDisplayed] = React.useState(initDisplayed);
+  const [books, setBooks] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
 
   const searchBooks = (text: string) => {
-    fetch(`/api/title`, {
+    setLoading(true);
+    fetch(`/api/search`, {
       method: 'POST',
       body: JSON.stringify({
         text
@@ -27,7 +34,9 @@ function App() {
       .then(response => response.json())
       .then(data => {
         if (data) {
-          setBook(data);
+          setDisplayed(data.books[0]);
+          setBooks(data.books);
+          setLoading(false);
         }
       })
       .catch(err => console.log(err));
@@ -35,21 +44,13 @@ function App() {
   return (
     <div style={{ margin: '3em' }}>
       <SearchField searchBooks={searchBooks} />
-      {book ? (
+      {displayed ? (
         <>
-          <h3>Title</h3>
-          <p>{book.title}</p>
-          <h3>Author</h3>
-          <p>{book.author}</p>
-          <h3>ISBN</h3>
-          <p>{book.ISBN}</p>
-          <h3>Description</h3>
-          <p>{book.description}</p>
-          <h3>Book Cover</h3>
-          <a href={book.link} target="_blank" rel="noopener noreferrer">
-            <img src={book.thumbnail} alt="book cover" />
-          </a>
+          <TitleDisplay book={displayed} />
+          <ResultTable bookList={books} setDisplayed={setDisplayed} />
         </>
+      ) : loading ? (
+        <h3 style={{ textAlign: 'center' }}>Loading...</h3>
       ) : null}
     </div>
   );

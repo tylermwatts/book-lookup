@@ -1,8 +1,9 @@
 export type Book = {
   author: string;
   title: string;
+  subtitle?: string;
   description: string;
-  thumbnail: string;
+  thumbnail?: string;
   link: string;
-  ISBN: string;
+  ISBN?: string;
 };
