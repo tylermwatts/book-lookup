@@ -28,7 +28,9 @@ app.post('/api/title', async (req, res) => {
     description: book.items[0].volumeInfo.description,
     thumbnail: book.items[0].volumeInfo.imageLinks.thumbnail,
     link: book.items[0].volumeInfo.infoLink,
-    ISBN: book.items[0].volumeInfo.industryIdentifiers[0].identifier
+    ISBN: book.items[0].volumeInfo.industryIdentifiers.find(
+      t => t.type === 'ISBN_13'
+    ).identifier
   });
 });
 
