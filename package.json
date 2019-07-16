@@ -1,0 +1,19 @@
+{
+  "name": "book-lookup",
+  "version": "1.0.0",
+  "description": "app for looking up books",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/warpfox/book-lookup.git"
+  },
+  "author": "Tyler Watts",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/warpfox/book-lookup/issues"
+  },
+  "homepage": "https://github.com/warpfox/book-lookup#readme"
+}
