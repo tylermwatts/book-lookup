@@ -22,27 +22,39 @@ const ResultTable: React.SFC<ResultTableProps> = ({
   bookList,
   setDisplayed
 }) => {
-  return (
+  return bookList[0] ? (
     <table>
       <tbody>
-        <tr>
+        <tr style={styles.tr}>
+          <th style={styles.th}>First Result</th>
+          <th style={styles.th}>Author</th>
+        </tr>
+        <tr style={styles.tr} onClick={() => setDisplayed(bookList[0])}>
+          <td style={styles.td}>{bookList[0].title}</td>
+          <td style={styles.td}>{bookList[0].author}</td>
+        </tr>
+        <tr style={styles.tr}>
           <th style={styles.th}>Other possible matches</th>
           <th style={styles.th}>Author</th>
         </tr>
-        {bookList.map((b, i) => {
-          return (
-            <tr
-              style={styles.tr}
-              key={b.title + i}
-              onClick={() => setDisplayed(b)}
-            >
-              <td style={styles.td}>{b.title}</td>
-              <td style={styles.td}>{b.author}</td>
-            </tr>
-          );
-        })}
+        {bookList
+          .filter(t => t !== bookList[0])
+          .map((b, i) => {
+            return (
+              <tr
+                style={styles.tr}
+                key={b.title + i}
+                onClick={() => setDisplayed(b)}
+              >
+                <td style={styles.td}>{b.title}</td>
+                <td style={styles.td}>{b.author}</td>
+              </tr>
+            );
+          })}
       </tbody>
     </table>
+  ) : (
+    <table />
   );
 };
 
