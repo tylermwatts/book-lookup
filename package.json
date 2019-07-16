@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/warpfox/book-lookup/issues"
   },
-  "homepage": "https://github.com/warpfox/book-lookup#readme"
+  "homepage": "https://github.com/warpfox/book-lookup#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.0"
+  }
 }
