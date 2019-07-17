@@ -1,9 +1,8 @@
-const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
+const express = require('express');
+const apiConfig = require('./api.ts');
 dotenv.config();
-
-const apiConfig = require('./api');
 
 const port = process.env.PORT;
 

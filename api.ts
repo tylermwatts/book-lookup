@@ -1,7 +1,6 @@
-const fetch = require('node-fetch');
-const apiKey = process.env.API_KEY;
-
 module.exports = app => {
+  const fetch = require('node-fetch');
+  const apiKey = process.env.API_KEY;
   app.post('/api/search', async (req, res) => {
     const books = await fetch(
       `https://www.googleapis.com/books/v1/volumes?q=${
