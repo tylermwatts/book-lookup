@@ -1,6 +1,6 @@
 import express = require('express');
 
-module.exports = (app: express.Application) => {
+const api = (app: express.Application) => {
   const fetch = require('node-fetch');
   const apiKey = process.env.API_KEY;
   app.post(
@@ -13,7 +13,7 @@ module.exports = (app: express.Application) => {
       )
         .then((response: Response) => response.json())
         .catch((err: Error) => console.log(err));
-      const modeledBooks = books.items.map(b => {
+      const modeledBooks = books.items.map((b: any) => {
         return {
           author: b.volumeInfo.authors[0],
           title: b.volumeInfo.title,
@@ -23,9 +23,12 @@ module.exports = (app: express.Application) => {
             ? b.volumeInfo.imageLinks.thumbnail
             : null,
           link: b.volumeInfo.infoLink,
-          ISBN: b.volumeInfo.industryIdentifiers.find(t => t.type === 'ISBN_13')
-            ? b.volumeInfo.industryIdentifiers.find(t => t.type === 'ISBN_13')
-                .identifier
+          ISBN: b.volumeInfo.industryIdentifiers.find(
+            (t: any) => t.type === 'ISBN_13'
+          )
+            ? b.volumeInfo.industryIdentifiers.find(
+                (t: any) => t.type === 'ISBN_13'
+              ).identifier
             : null
         };
       });
@@ -35,3 +38,5 @@ module.exports = (app: express.Application) => {
     }
   );
 };
+
+export default api;

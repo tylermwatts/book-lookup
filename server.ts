@@ -1,7 +1,7 @@
-const bodyParser = require('body-parser');
-const dotenv = require('dotenv');
+import bodyParser from 'body-parser';
+import dotenv from 'dotenv';
+import apiConfig from './api';
 import express = require('express');
-const apiConfig = require('./api.ts');
 dotenv.config();
 
 const port = process.env.PORT;
