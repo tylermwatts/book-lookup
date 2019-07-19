@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './App.css';
-import ResultTable from './Components/ResultTable';
+import ResultTable from './Components/ResultTable/ResultTable';
 import SearchField from './Components/SearchField';
 import TitleDisplay from './Components/TitleDisplay';
 import { Book } from './types/Book';
