@@ -44,14 +44,18 @@ function App() {
   return (
     <div style={{ margin: '3em' }}>
       <SearchField searchBooks={searchBooks} />
-      {displayed ? (
-        <>
-          <TitleDisplay book={displayed} />
-          <ResultTable bookList={books} setDisplayed={setDisplayed} />
-        </>
-      ) : loading ? (
+      {loading ? (
         <h3 style={{ textAlign: 'center' }}>Loading...</h3>
-      ) : null}
+      ) : (
+        <>
+          {displayed ? (
+            <>
+              <TitleDisplay book={displayed} />
+              <ResultTable bookList={books} setDisplayed={setDisplayed} />
+            </>
+          ) : null}
+        </>
+      )}
     </div>
   );
 }
