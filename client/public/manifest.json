@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Book Lookup",
+  "name": "Look up books using Google Books API",
   "icons": [
     {
       "src": "favicon.ico",
