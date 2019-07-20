@@ -9,13 +9,13 @@ export interface ContainerProps {}
 
 const Container: React.SFC<ContainerProps> = () => {
   const initDisplayed: Book = {
-    author: 'Author',
-    title: 'Title',
-    subtitle: 'Subtitle',
-    description: 'Book description',
-    thumbnail: '#',
-    link: '#',
-    ISBN: '0123456789123'
+    author: '',
+    title: '',
+    subtitle: '',
+    description: '',
+    thumbnail: '',
+    link: '',
+    ISBN: ''
   };
 
   const [displayed, setDisplayed] = React.useState(initDisplayed);

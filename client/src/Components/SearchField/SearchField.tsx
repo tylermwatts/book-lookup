@@ -18,7 +18,7 @@ const SearchField: React.SFC<SearchFieldProps> = ({ searchBooks }) => {
   return (
     <div className="searchbar-container">
       <form onSubmit={handleSubmit}>
-        <label>{'Search by title and/or author: '}</label>
+        <label>{'Search: '}</label>
         <input type="text" onChange={handleChange} value={text} />
         {text && <input type="submit" value="Search" />}
       </form>

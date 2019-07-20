@@ -32,9 +32,14 @@ const TitleDisplay: React.SFC<TitleDisplayProps> = ({ book }) => {
       <div className="bottom-row-info">
         <div className="bottom-info-element">
           <h3>Book Cover</h3>
-          <a href={book.link} target="_blank" rel="noopener noreferrer">
-            <img src={book.thumbnail} alt="book cover" />
-          </a>
+          {book.thumbnail ? (
+            <>
+              <a href={book.link} target="_blank" rel="noopener noreferrer">
+                <img src={book.thumbnail} alt="book cover" />
+              </a>
+              <p>Click image to see title on Google Books</p>
+            </>
+          ) : null}
         </div>
         <div className="bottom-info-element">
           <h3>Description</h3>
