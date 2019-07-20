@@ -26,7 +26,8 @@ const TitleDisplay: React.SFC<TitleDisplayProps> = ({ book }) => {
         </div>
         <div className="top-info-element">
           <h3>ISBN</h3>
-          <p>{book.ISBN}</p>
+          {book.ISBN.ISBN_10 && <p>ISBN 10: {book.ISBN.ISBN_10}</p>}
+          {book.ISBN.ISBN_13 && <p>ISBN 13: {book.ISBN.ISBN_13}</p>}
         </div>
       </div>
       <div className="bottom-row-info">

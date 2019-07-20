@@ -1,4 +1,5 @@
 import * as React from 'react';
+import loadingAnimation from '../../loadingAnimation.gif';
 import { Book } from '../../types/Book';
 import ResultTable from '../ResultTable/ResultTable';
 import SearchField from '../SearchField/SearchField';
@@ -15,7 +16,10 @@ const Container: React.SFC<ContainerProps> = () => {
     description: '',
     thumbnail: '',
     link: '',
-    ISBN: ''
+    ISBN: {
+      ISBN_10: '',
+      ISBN_13: ''
+    }
   };
 
   const [displayed, setDisplayed] = React.useState(initDisplayed);
@@ -46,10 +50,12 @@ const Container: React.SFC<ContainerProps> = () => {
   return (
     <div style={{ margin: '3em' }}>
       <h1>Book Lookup</h1>
-      <h2>Search for books by title, author, or ISBN number</h2>
+      <h2>Search for books by title, author, or ISBN</h2>
       <SearchField searchBooks={searchBooks} />
       {loading ? (
-        <h3 style={{ textAlign: 'center' }}>Loading...</h3>
+        <div style={{ textAlign: 'center', margin: '1em' }}>
+          <img src={loadingAnimation} alt="loading animation" />
+        </div>
       ) : (
         <>
           {displayed ? (

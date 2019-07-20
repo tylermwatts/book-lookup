@@ -5,5 +5,8 @@ export type Book = {
   description: string;
   thumbnail?: string;
   link: string;
-  ISBN?: string;
+  ISBN: {
+    ISBN_10?: string;
+    ISBN_13?: string;
+  };
 };

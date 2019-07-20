@@ -15,7 +15,8 @@ const api = (app: express.Application) => {
         .catch((err: Error) => console.log(err));
       const modeledBooks = books.items.map((b: any) => {
         return {
-          author: b.volumeInfo.authors[0],
+          author:
+            b.volumeInfo.authors !== undefined ? b.volumeInfo.authors[0] : '',
           title: b.volumeInfo.title,
           subtitle: b.volumeInfo.subtitle,
           description: b.volumeInfo.description,
@@ -23,13 +24,26 @@ const api = (app: express.Application) => {
             ? b.volumeInfo.imageLinks.thumbnail
             : null,
           link: b.volumeInfo.infoLink,
-          ISBN: b.volumeInfo.industryIdentifiers.find(
-            (t: any) => t.type === 'ISBN_13'
-          )
-            ? b.volumeInfo.industryIdentifiers.find(
-                (t: any) => t.type === 'ISBN_13'
-              ).identifier
-            : null
+          ISBN: {
+            ISBN_10: b.volumeInfo.industryIdentifiers
+              ? b.volumeInfo.industryIdentifiers.find(
+                  (t: any) => t.type === 'ISBN_10'
+                )
+                ? b.volumeInfo.industryIdentifiers.find(
+                    (t: any) => t.type === 'ISBN_10'
+                  ).identifier
+                : ''
+              : '',
+            ISBN_13: b.volumeInfo.industryIdentifiers
+              ? b.volumeInfo.industryIdentifiers.find(
+                  (t: any) => t.type === 'ISBN_13'
+                )
+                ? b.volumeInfo.industryIdentifiers.find(
+                    (t: any) => t.type === 'ISBN_13'
+                  ).identifier
+                : ''
+              : ''
+          }
         };
       });
       res.json({
