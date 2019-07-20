@@ -4,8 +4,13 @@
 .td {
   border: 1px solid black;
   text-align: center;
-  background-color: #cce6ff;
+  padding: 0.25em;
 }
 .th {
   border: 1px solid black;
+}
+
+.table-container {
+  display: flex;
+  justify-content: center;
 }

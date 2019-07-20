@@ -1,4 +1,5 @@
 import * as React from 'react';
+import './SearchField.css';
 
 export interface SearchFieldProps {
   searchBooks: Function;
@@ -15,11 +16,13 @@ const SearchField: React.SFC<SearchFieldProps> = ({ searchBooks }) => {
     setText('');
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <label>{'Search by title and/or author: '}</label>
-      <input type="text" onChange={handleChange} value={text} />
-      {text && <input type="submit" value="Search" />}
-    </form>
+    <div className="searchbar-container">
+      <form onSubmit={handleSubmit}>
+        <label>{'Search by title and/or author: '}</label>
+        <input type="text" onChange={handleChange} value={text} />
+        {text && <input type="submit" value="Search" />}
+      </form>
+    </div>
   );
 };
 
