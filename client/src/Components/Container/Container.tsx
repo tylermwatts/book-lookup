@@ -58,7 +58,7 @@ const Container: React.SFC<ContainerProps> = () => {
         </div>
       ) : (
         <>
-          {displayed ? (
+          {displayed.title ? (
             <>
               <TitleDisplay book={displayed} />
               <ResultTable bookList={books} setDisplayed={setDisplayed} />
