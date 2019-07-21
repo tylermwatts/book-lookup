@@ -28,10 +28,29 @@ h3 {
 .bottom-info-element {
   margin: 0.5em;
   padding: 0.5em;
-  text-align: center;
+  text-align: start;
   max-width: 50vw;
 }
 
 .description {
   text-align: start;
+}
+
+@media only screen and (max-width: 1200px) {
+  .top-row-info {
+    flex-direction: column;
+  }
+  .bottom-row-info {
+    flex-direction: column;
+  }
+  .top-info-element {
+    margin: 0.25em;
+    padding: 0;
+    max-width: auto;
+  }
+  .bottom-info-element {
+    margin: 0.25em;
+    padding: 0;
+    max-width: auto;
+  }
 }

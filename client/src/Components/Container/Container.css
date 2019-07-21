@@ -16,3 +16,12 @@ h2 {
   background-color: #fcfcfc;
   max-width: 50vw;
 }
+
+@media only screen and (max-width: 1200px) {
+  .lookup-background {
+    max-width: 80vw;
+  }
+  .result-background {
+    max-width: 80vw;
+  }
+}
