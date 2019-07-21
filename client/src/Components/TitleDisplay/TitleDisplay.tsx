@@ -26,6 +26,13 @@ const TitleDisplay: React.SFC<TitleDisplayProps> = ({ book }) => {
           <h3>Author</h3>
           <p>{book.author}</p>
         </div>
+        {book.publisher && (
+          <div className="top-info-element">
+            <h3>Published by</h3>
+            <p>{book.publisher}</p>
+          </div>
+        )}
+
         <div className="top-info-element">
           <h3>ISBN</h3>
           {book.ISBN.ISBN_10 && <p>ISBN 10: {book.ISBN.ISBN_10}</p>}
