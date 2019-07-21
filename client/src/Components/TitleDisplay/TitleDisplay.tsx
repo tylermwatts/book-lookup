@@ -12,7 +12,9 @@ const TitleDisplay: React.SFC<TitleDisplayProps> = ({ book }) => {
       <div className="top-row-info">
         <div className="top-info-element">
           <h3>Title</h3>
-          <p>{book.title}</p>
+          <p>
+            <em>{book.title}</em>
+          </p>
         </div>
         {book.subtitle && (
           <div className="top-info-element">

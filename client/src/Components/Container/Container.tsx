@@ -49,9 +49,11 @@ const Container: React.SFC<ContainerProps> = () => {
   };
   return (
     <div style={{ margin: '3em' }}>
-      <h1>Book Lookup</h1>
-      <h2>Search for books by title, author, or ISBN</h2>
-      <SearchField searchBooks={searchBooks} />
+      <div className="lookup-background">
+        <h1>Book Lookup</h1>
+        <h2>Search for books by title, author, or ISBN</h2>
+        <SearchField searchBooks={searchBooks} />
+      </div>
       {loading ? (
         <div style={{ textAlign: 'center', margin: '1em' }}>
           <img src={loadingAnimation} alt="loading animation" />
@@ -59,10 +61,10 @@ const Container: React.SFC<ContainerProps> = () => {
       ) : (
         <>
           {displayed.title ? (
-            <>
+            <div className="result-background">
               <TitleDisplay book={displayed} />
               <ResultTable bookList={books} setDisplayed={setDisplayed} />
-            </>
+            </div>
           ) : null}
         </>
       )}

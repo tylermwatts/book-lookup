@@ -2,3 +2,17 @@ h1,
 h2 {
   text-align: center;
 }
+
+.lookup-background {
+  padding: 1em;
+  margin: 1em auto;
+  background-color: #fcfcfc;
+  max-width: 35vw;
+}
+
+.result-background {
+  padding: 1em;
+  margin: 1em auto;
+  background-color: #fcfcfc;
+  max-width: 50vw;
+}
