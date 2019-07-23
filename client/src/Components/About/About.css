@@ -1,0 +1,24 @@
+.about {
+  display: flex;
+  justify-content: center;
+  padding: 1em;
+  margin: 1em auto;
+}
+
+.about-container {
+  color: #090909;
+  background-color: #fcfcfc;
+  max-width: 60vw;
+  text-align: center;
+  padding: 1em;
+  margin: 1em;
+}
+
+.h1 {
+  font-size: 2em;
+}
+
+.p {
+  font-weight: 500;
+  font-size: 1.25em;
+}
