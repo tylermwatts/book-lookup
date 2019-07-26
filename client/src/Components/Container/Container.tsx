@@ -1,6 +1,6 @@
 import * as React from 'react';
+import { Book } from '../../../../types/Book';
 import loadingAnimation from '../../loadingAnimation.gif';
-import { Book } from '../../types/Book';
 import ResultTable from '../ResultTable/ResultTable';
 import SearchField from '../SearchField/SearchField';
 import TitleDisplay from '../TitleDisplay/TitleDisplay';

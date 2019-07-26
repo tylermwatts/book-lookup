@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Book } from '../../types/Book';
+import { Book } from '../../../../types/Book';
 import './TitleDisplay.css';
 
 export interface TitleDisplayProps {

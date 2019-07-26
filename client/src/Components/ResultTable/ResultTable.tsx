@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BookList } from '../../types/BookList';
+import { BookList } from '../../../../types/BookList';
 import './ResultTable.css';
 
 export interface ResultTableProps {

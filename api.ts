@@ -1,4 +1,7 @@
 import express = require('express');
+import { bookFormatter } from './helpers/bookFormatter';
+import { IndustryIdentifier } from './types/IndustryIdentifier';
+import { Volume } from './types/Volume';
 
 const api = (app: express.Application) => {
   const fetch = require('node-fetch');
@@ -15,47 +18,15 @@ const api = (app: express.Application) => {
         .catch((err: Error) => console.log(err));
       const modeledBooks = books.items
         .filter(
-          (a: any) =>
+          (a: Volume) =>
             a.volumeInfo.authors &&
             a.volumeInfo.industryIdentifiers &&
             a.volumeInfo.industryIdentifiers.find(
-              (t: any) => t.type === 'ISBN_10' || t.type === 'ISBN_13'
+              (i: IndustryIdentifier) =>
+                i.type === 'ISBN_10' || i.type === 'ISBN_13'
             )
         )
-        .map(
-          (b: {
-            volumeInfo: {
-              authors: string[];
-              title: string;
-              subtitle?: string;
-              publisher?: string;
-              description: string;
-              imageLinks: { thumbnail: string };
-              infoLink: string;
-              industryIdentifiers: [{ type: string; identifier: string }];
-            };
-          }) => {
-            return {
-              author: b.volumeInfo.authors[0],
-              title: b.volumeInfo.title,
-              subtitle: b.volumeInfo.subtitle,
-              publisher: b.volumeInfo.publisher,
-              description: b.volumeInfo.description,
-              thumbnail: b.volumeInfo.imageLinks
-                ? b.volumeInfo.imageLinks.thumbnail
-                : null,
-              link: b.volumeInfo.infoLink,
-              ISBN: {
-                ISBN_10: b.volumeInfo.industryIdentifiers.find(
-                  (t: { type: string }) => t.type === 'ISBN_10'
-                )!.identifier,
-                ISBN_13: b.volumeInfo.industryIdentifiers.find(
-                  (t: { type: string }) => t.type === 'ISBN_13'
-                )!.identifier
-              }
-            };
-          }
-        );
+        .map((b: Volume) => bookFormatter(b));
       res.json({
         books: modeledBooks
       });
