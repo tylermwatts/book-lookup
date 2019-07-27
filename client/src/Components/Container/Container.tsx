@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { animated } from 'react-spring';
 import { Book } from '../../../../types/Book';
 import loadingAnimation from '../../loadingAnimation.gif';
 import ResultTable from '../ResultTable/ResultTable';
@@ -6,9 +7,11 @@ import SearchField from '../SearchField/SearchField';
 import TitleDisplay from '../TitleDisplay/TitleDisplay';
 import './Container.css';
 
-export interface ContainerProps {}
+export interface ContainerProps {
+  animationStyle: any;
+}
 
-const Container: React.SFC<ContainerProps> = () => {
+const Container: React.SFC<ContainerProps> = ({ animationStyle }) => {
   const initDisplayed: Book = {
     author: '',
     title: '',
@@ -48,7 +51,7 @@ const Container: React.SFC<ContainerProps> = () => {
       .catch(err => console.log(err));
   };
   return (
-    <div style={{ margin: '3em' }}>
+    <animated.div className="lookup-container" style={animationStyle}>
       <div className="lookup-background">
         <h1>Book Lookup</h1>
         <h2>Search for books by title, author, or ISBN</h2>
@@ -68,7 +71,7 @@ const Container: React.SFC<ContainerProps> = () => {
           ) : null}
         </>
       )}
-    </div>
+    </animated.div>
   );
 };
 
