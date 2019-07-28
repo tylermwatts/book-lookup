@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { useSpring } from 'react-spring';
+import { Book } from '../../types/Book';
 import './App.css';
 import About from './Components/About/About';
 import Container from './Components/Container/Container';
@@ -9,17 +9,60 @@ import NavHeader from './Components/NavHeader/NavHeader';
 export interface AppProps {}
 
 const App: React.SFC<AppProps> = () => {
-  const spring: any = {
-    to: [{ opacity: 1 }, { color: 'black' }],
-    from: { opacity: 0, color: '#fcfcfc' }
+  const initDisplayed: Book = {
+    author: '',
+    title: '',
+    subtitle: '',
+    description: '',
+    thumbnail: '',
+    link: '',
+    ISBN: {
+      ISBN_10: '',
+      ISBN_13: ''
+    }
   };
-  const animation = useSpring(spring);
-  const AnimatedContainer = () => <Container animationStyle={animation} />;
+  const [displayed, setDisplayed] = React.useState(initDisplayed);
+  const [books, setBooks] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
+
+  const searchBooks = (text: string) => {
+    setLoading(true);
+    fetch(`/api/search`, {
+      method: 'POST',
+      body: JSON.stringify({
+        text
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data) {
+          setDisplayed(data.books[0]);
+          setBooks(data.books);
+          setLoading(false);
+        }
+      })
+      .catch(err => console.log(err));
+  };
   return (
     <Router>
       <NavHeader />
       <div>
-        <Route exact path="/" component={AnimatedContainer} />
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <Container
+              displayed={displayed}
+              setDisplayed={setDisplayed}
+              books={books}
+              loading={loading}
+              searchBooks={searchBooks}
+            />
+          )}
+        />
         <Route path="/about/" component={About} />
       </div>
     </Router>

@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { animated } from 'react-spring';
+import { Spring } from 'react-spring/renderprops';
 import { Book } from '../../../../types/Book';
+import { BookList } from '../../../../types/BookList';
 import loadingAnimation from '../../loadingAnimation.gif';
 import ResultTable from '../ResultTable/ResultTable';
 import SearchField from '../SearchField/SearchField';
@@ -8,70 +9,61 @@ import TitleDisplay from '../TitleDisplay/TitleDisplay';
 import './Container.css';
 
 export interface ContainerProps {
-  animationStyle: any;
+  displayed: Book;
+  setDisplayed: Function;
+  books: BookList;
+  loading: boolean;
+  searchBooks: Function;
 }
 
-const Container: React.SFC<ContainerProps> = ({ animationStyle }) => {
-  const initDisplayed: Book = {
-    author: '',
-    title: '',
-    subtitle: '',
-    description: '',
-    thumbnail: '',
-    link: '',
-    ISBN: {
-      ISBN_10: '',
-      ISBN_13: ''
-    }
-  };
-
-  const [displayed, setDisplayed] = React.useState(initDisplayed);
-  const [books, setBooks] = React.useState([]);
-  const [loading, setLoading] = React.useState(false);
-
-  const searchBooks = (text: string) => {
-    setLoading(true);
-    fetch(`/api/search`, {
-      method: 'POST',
-      body: JSON.stringify({
-        text
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(response => response.json())
-      .then(data => {
-        if (data) {
-          setDisplayed(data.books[0]);
-          setBooks(data.books);
-          setLoading(false);
-        }
-      })
-      .catch(err => console.log(err));
-  };
+const Container: React.SFC<ContainerProps> = ({
+  displayed,
+  setDisplayed,
+  books,
+  loading,
+  searchBooks
+}) => {
   return (
-    <animated.div className="lookup-container" style={animationStyle}>
-      <div className="lookup-background">
-        <h1>Book Lookup</h1>
-        <h2>Search for books by title, author, or ISBN</h2>
-        <SearchField searchBooks={searchBooks} />
-      </div>
-      {loading ? (
-        <div style={{ textAlign: 'center', margin: '1em' }}>
-          <img src={loadingAnimation} alt="loading animation" />
-        </div>
-      ) : (
-        <>
-          {displayed.title ? (
-            <div className="result-background">
-              <TitleDisplay book={displayed} />
-              <ResultTable bookList={books} setDisplayed={setDisplayed} />
+    <Spring
+      from={{ opacity: 0 }}
+      to={{ opacity: 1 }}
+      config={{ duration: 500 }}
+    >
+      {props => (
+        <div className="lookup-container" style={props}>
+          <div className="lookup-background">
+            <h1>Book Lookup</h1>
+            <h2>Search for books by title, author, or ISBN</h2>
+            <SearchField searchBooks={searchBooks} />
+          </div>
+          {loading ? (
+            <div style={{ textAlign: 'center', margin: '1em' }}>
+              <img src={loadingAnimation} alt="loading animation" />
             </div>
-          ) : null}
-        </>
+          ) : (
+            <>
+              {displayed.title ? (
+                <Spring
+                  from={{ opacity: 0 }}
+                  to={{ opacity: 1 }}
+                  config={{ duration: 500 }}
+                >
+                  {props => (
+                    <div className="result-background" style={props}>
+                      <TitleDisplay book={displayed} />
+                      <ResultTable
+                        bookList={books}
+                        setDisplayed={setDisplayed}
+                      />
+                    </div>
+                  )}
+                </Spring>
+              ) : null}
+            </>
+          )}
+        </div>
       )}
-    </animated.div>
+    </Spring>
   );
 };
 
