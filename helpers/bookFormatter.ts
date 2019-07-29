@@ -1,7 +1,8 @@
+import { Book } from '../types/Book';
 import { IndustryIdentifier } from '../types/IndustryIdentifier';
 import { Volume } from '../types/Volume';
 
-export function bookFormatter(volume: Volume) {
+export function bookFormatter(volume: Volume): Book {
   return {
     author: volume.volumeInfo.authors[0],
     title: volume.volumeInfo.title,
@@ -10,7 +11,7 @@ export function bookFormatter(volume: Volume) {
     description: volume.volumeInfo.description,
     thumbnail: volume.volumeInfo.imageLinks
       ? volume.volumeInfo.imageLinks.thumbnail
-      : null,
+      : undefined,
     link: volume.volumeInfo.infoLink,
     ISBN: {
       ISBN_10: volume.volumeInfo.industryIdentifiers.find(
