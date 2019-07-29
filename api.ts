@@ -1,11 +1,11 @@
 import express = require('express');
 import { bookFormatter } from './helpers/bookFormatter';
 
-type IndustryIdentifier = {
+export type IndustryIdentifier = {
   type: string;
 };
 
-type Volume = {
+export type Volume = {
   volumeInfo: {
     authors: string[];
     title: string;

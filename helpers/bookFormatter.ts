@@ -1,6 +1,5 @@
+import { IndustryIdentifier, Volume } from '../api';
 import { IBook } from '../interfaces/IBook';
-import { IndustryIdentifier } from '../interfaces/IndustryIdentifier';
-import { Volume } from '../interfaces/Volume';
 
 export function bookFormatter(volume: Volume): IBook {
   return {
