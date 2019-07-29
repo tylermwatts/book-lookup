@@ -1,5 +1,6 @@
 import express = require('express');
 import { bookFormatter } from './helpers/bookFormatter';
+import { IBookList } from './interfaces/IBookList';
 
 export type IndustryIdentifier = {
   type: string;
@@ -31,7 +32,7 @@ const api = (app: express.Application) => {
       )
         .then((response: Response) => response.json())
         .catch((err: Error) => console.log(err));
-      const modeledBooks = books.items
+      const modeledBooks: IBookList = books.items
         .filter(
           (a: Volume) =>
             a.volumeInfo.authors &&
