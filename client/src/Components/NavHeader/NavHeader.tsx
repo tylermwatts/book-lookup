@@ -9,7 +9,7 @@ const NavHeader: React.SFC<NavHeaderProps> = () => {
     document.getElementById('search')!.classList.add('active');
   });
 
-  const activator = (id: string) => {
+  const activator = (id: string): void => {
     const links = document.getElementsByClassName('link');
     for (let i = 0; i < links.length; i++) {
       if (links[i].id === id) {

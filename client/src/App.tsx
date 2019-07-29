@@ -25,7 +25,7 @@ const App: React.SFC<AppProps> = () => {
   const [books, setBooks] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
 
-  const searchBooks = (text: string) => {
+  const searchBooks = (text: string): void => {
     setLoading(true);
     fetch(`/api/search`, {
       method: 'POST',

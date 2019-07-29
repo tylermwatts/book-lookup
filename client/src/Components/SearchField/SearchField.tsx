@@ -7,10 +7,10 @@ export interface SearchFieldProps {
 
 const SearchField: React.SFC<SearchFieldProps> = ({ searchBooks }) => {
   const [text, setText] = React.useState('');
-  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.FormEvent<HTMLInputElement>): void => {
     setText(e.currentTarget.value);
   };
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     searchBooks(text);
     setText('');
