@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Book } from '../../../../types/Book';
+import { IBook } from '../../../../interfaces/IBook';
 import './TitleDisplay.css';
 
 export interface TitleDisplayProps {
-  book: Book;
+  book: IBook;
 }
 
 const TitleDisplay: React.SFC<TitleDisplayProps> = ({ book }) => {

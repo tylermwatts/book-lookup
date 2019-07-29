@@ -1,8 +1,8 @@
-import { Book } from '../types/Book';
-import { IndustryIdentifier } from '../types/IndustryIdentifier';
-import { Volume } from '../types/Volume';
+import { IBook } from '../interfaces/IBook';
+import { IndustryIdentifier } from '../interfaces/IndustryIdentifier';
+import { Volume } from '../interfaces/Volume';
 
-export function bookFormatter(volume: Volume): Book {
+export function bookFormatter(volume: Volume): IBook {
   return {
     author: volume.volumeInfo.authors[0],
     title: volume.volumeInfo.title,

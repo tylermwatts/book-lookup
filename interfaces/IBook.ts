@@ -1,4 +1,4 @@
-export type Book = {
+export interface IBook {
   author: string;
   title: string;
   subtitle?: string;
@@ -10,4 +10,4 @@ export type Book = {
     ISBN_10: string;
     ISBN_13: string;
   };
-};
+}

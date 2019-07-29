@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { Book } from '../../types/Book';
+import { IBook } from '../../interfaces/IBook';
 import './App.css';
 import About from './Components/About/About';
 import Container from './Components/Container/Container';
@@ -9,7 +9,7 @@ import NavHeader from './Components/NavHeader/NavHeader';
 export interface AppProps {}
 
 const App: React.SFC<AppProps> = () => {
-  const initDisplayed: Book = {
+  const initDisplayed: IBook = {
     author: '',
     title: '',
     subtitle: '',

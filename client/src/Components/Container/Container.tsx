@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Spring } from 'react-spring/renderprops';
-import { Book } from '../../../../types/Book';
-import { BookList } from '../../../../types/BookList';
+import { IBook } from '../../../../interfaces/IBook';
+import { IBookList } from '../../../../interfaces/IBookList';
 import loadingAnimation from '../../loadingAnimation.gif';
 import ResultTable from '../ResultTable/ResultTable';
 import SearchField from '../SearchField/SearchField';
@@ -9,9 +9,9 @@ import TitleDisplay from '../TitleDisplay/TitleDisplay';
 import './Container.css';
 
 export interface ContainerProps {
-  displayed: Book;
+  displayed: IBook;
   setDisplayed: Function;
-  books: BookList;
+  books: IBookList;
   loading: boolean;
   searchBooks: Function;
 }

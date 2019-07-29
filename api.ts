@@ -1,7 +1,22 @@
 import express = require('express');
 import { bookFormatter } from './helpers/bookFormatter';
-import { IndustryIdentifier } from './types/IndustryIdentifier';
-import { Volume } from './types/Volume';
+
+type IndustryIdentifier = {
+  type: string;
+};
+
+type Volume = {
+  volumeInfo: {
+    authors: string[];
+    title: string;
+    subtitle?: string;
+    publisher?: string;
+    description: string;
+    imageLinks: { thumbnail: string };
+    infoLink: string;
+    industryIdentifiers: [{ type: string; identifier: string }];
+  };
+};
 
 const api = (app: express.Application) => {
   const fetch = require('node-fetch');

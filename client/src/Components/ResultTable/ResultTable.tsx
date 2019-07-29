@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { BookList } from '../../../../types/BookList';
+import { IBookList } from '../../../../interfaces/IBookList';
 import './ResultTable.css';
 
 export interface ResultTableProps {
-  bookList: BookList;
+  bookList: IBookList;
   setDisplayed: Function;
 }
 
