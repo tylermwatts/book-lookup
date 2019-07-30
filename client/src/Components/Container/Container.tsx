@@ -5,12 +5,13 @@ import loadingAnimation from '../../img/loadingAnimation.gif';
 import ResultTable from '../ResultTable/ResultTable';
 import SearchField from '../SearchField/SearchField';
 import TitleDisplay from '../TitleDisplay/TitleDisplay';
+import { Book } from './../../../../classes/Book';
 import './Container.css';
 
 export interface ContainerProps {
   displayed: IBook;
   setDisplayed: Function;
-  books: Array<IBook>;
+  books: Array<Book>;
   loading: boolean;
   searchBooks: Function;
 }
