@@ -6,7 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #cce6ff;
-  background-image: url('./bookshelf.png');
+  background-image: url('./img/bookshelf.png');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
