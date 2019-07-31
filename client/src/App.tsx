@@ -2,9 +2,9 @@ import * as React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { IBook } from '../../interfaces/IBook';
 import './App.css';
-import About from './Components/About/About';
-import Container from './Components/Container/Container';
-import NavHeader from './Components/NavHeader/NavHeader';
+import { About } from './Components/About';
+import { Container } from './Components/Container';
+import { NavHeader } from './Components/NavHeader';
 
 export interface AppProps {}
 

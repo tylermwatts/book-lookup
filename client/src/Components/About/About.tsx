@@ -4,7 +4,7 @@ import './About.css';
 
 export interface AboutProps {}
 
-const About: React.SFC<AboutProps> = () => {
+export const About: React.SFC<AboutProps> = () => {
   return (
     <Spring
       from={{ opacity: 0 }}
@@ -24,5 +24,3 @@ const About: React.SFC<AboutProps> = () => {
     </Spring>
   );
 };
-
-export default About;

@@ -4,7 +4,7 @@ import './NavHeader.css';
 
 export interface NavHeaderProps {}
 
-const NavHeader: React.SFC<NavHeaderProps> = () => {
+export const NavHeader: React.SFC<NavHeaderProps> = () => {
   React.useEffect(() => {
     document.getElementById('search')!.classList.add('active');
   });
@@ -47,5 +47,3 @@ const NavHeader: React.SFC<NavHeaderProps> = () => {
     </div>
   );
 };
-
-export default NavHeader;

@@ -6,7 +6,7 @@ export interface TitleDisplayProps {
   book: IBook;
 }
 
-const TitleDisplay: React.SFC<TitleDisplayProps> = ({ book }) => {
+export const TitleDisplay: React.SFC<TitleDisplayProps> = ({ book }) => {
   return (
     <div className="display-container">
       <div className="top-row-info">
@@ -59,5 +59,3 @@ const TitleDisplay: React.SFC<TitleDisplayProps> = ({ book }) => {
     </div>
   );
 };
-
-export default TitleDisplay;

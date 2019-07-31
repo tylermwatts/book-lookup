@@ -2,9 +2,9 @@ import * as React from 'react';
 import { Spring } from 'react-spring/renderprops';
 import { IBook } from '../../../../interfaces/IBook';
 import loadingAnimation from '../../img/loadingAnimation.gif';
-import ResultTable from '../ResultTable/ResultTable';
-import SearchField from '../SearchField/SearchField';
-import TitleDisplay from '../TitleDisplay/TitleDisplay';
+import { ResultTable } from '../ResultTable';
+import { SearchField } from '../SearchField';
+import { TitleDisplay } from '../TitleDisplay';
 import { Book } from './../../../../classes/Book';
 import './Container.css';
 
@@ -16,7 +16,7 @@ export interface ContainerProps {
   searchBooks: Function;
 }
 
-const Container: React.SFC<ContainerProps> = ({
+export const Container: React.SFC<ContainerProps> = ({
   displayed,
   setDisplayed,
   books,
@@ -66,5 +66,3 @@ const Container: React.SFC<ContainerProps> = ({
     </Spring>
   );
 };
-
-export default Container;

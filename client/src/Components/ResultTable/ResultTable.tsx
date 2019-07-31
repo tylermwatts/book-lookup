@@ -7,7 +7,7 @@ export interface ResultTableProps {
   setDisplayed: Function;
 }
 
-const ResultTable: React.SFC<ResultTableProps> = ({
+export const ResultTable: React.SFC<ResultTableProps> = ({
   bookList,
   setDisplayed
 }) => {
@@ -48,5 +48,3 @@ const ResultTable: React.SFC<ResultTableProps> = ({
     <table />
   );
 };
-
-export default ResultTable;
