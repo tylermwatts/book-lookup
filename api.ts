@@ -10,7 +10,7 @@ const api = (app: express.Application) => {
   const fetch = require('node-fetch');
   const apiKey = process.env.API_KEY;
   app.post(
-    '/api/search',
+    `/api/search`,
     async (req: express.Request, res: express.Response) => {
       const books = await fetch(
         `https://www.googleapis.com/books/v1/volumes?q=${
