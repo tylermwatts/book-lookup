@@ -1,6 +1,6 @@
 import express = require('express');
-import { Book } from './classes/Book';
-import { IVolume } from './interfaces/IVolume';
+import { IVolume } from '../interfaces/IVolume';
+import { Book } from './../classes/Book';
 
 export type IndustryIdentifier = {
   type: string;
