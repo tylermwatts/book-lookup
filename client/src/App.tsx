@@ -12,6 +12,7 @@ const App: React.SFC<AppProps> = () => {
   const initDisplayed: IBook = {
     author: '',
     title: '',
+    publisher: '',
     subtitle: '',
     description: '',
     thumbnail: '',
