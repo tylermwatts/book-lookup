@@ -6,7 +6,7 @@ export class Book implements IBook {
     this.author = volume.volumeInfo.authors[0];
     this.title = volume.volumeInfo.title;
     this.subtitle = volume.volumeInfo.subtitle;
-    this.publisher = volume.volumeInfo.publisher;
+    this.publisher = volume.volumeInfo.publisher!;
     this.description = volume.volumeInfo.description;
     this.thumbnail = volume.volumeInfo.imageLinks.thumbnail;
     this.link = volume.volumeInfo.infoLink;
