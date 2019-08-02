@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { IBook } from '../../interfaces/IBook';
+import { IBook } from './../../interfaces/IBook';
 import './App.css';
 import { About } from './Components/About';
 import { Container } from './Components/Container';
