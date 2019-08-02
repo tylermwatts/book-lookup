@@ -23,6 +23,8 @@ const api = (app: express.Application) => {
         .filter(
           (a: IVolume) =>
             a.volumeInfo.authors &&
+            a.volumeInfo.imageLinks &&
+            a.volumeInfo.publisher &&
             a.volumeInfo.industryIdentifiers &&
             a.volumeInfo.industryIdentifiers.find(
               (i: IndustryIdentifier) =>
