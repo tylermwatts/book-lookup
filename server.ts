@@ -1,6 +1,6 @@
 import bodyParser from 'body-parser';
+import dotenv from 'dotenv';
 import apiConfig from './api';
-const dotenv = require('dotenv');
 import express = require('express');
 import path = require('path');
 dotenv.config();
