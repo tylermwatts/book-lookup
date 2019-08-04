@@ -14,6 +14,7 @@ export interface ContainerProps {
   books: Array<Book>;
   loading: boolean;
   searchBooks: Function;
+  isLoaded: boolean;
 }
 
 export const Container: React.SFC<ContainerProps> = ({
@@ -21,13 +22,15 @@ export const Container: React.SFC<ContainerProps> = ({
   setDisplayed,
   books,
   loading,
-  searchBooks
+  searchBooks,
+  isLoaded
 }) => {
   return (
     <Spring
       from={{ opacity: 0 }}
       to={{ opacity: 1 }}
       config={{ duration: 500 }}
+      delay={isLoaded ? 0 : 2000}
     >
       {props => (
         <div className="lookup-container" style={props}>

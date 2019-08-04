@@ -25,6 +25,11 @@ const App: React.SFC<AppProps> = () => {
   const [displayed, setDisplayed] = React.useState(initDisplayed);
   const [books, setBooks] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
+  const [isLoaded, setIsLoaded] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsLoaded(true);
+  }, [isLoaded]);
 
   const searchBooks = (text: string): void => {
     setLoading(true);
@@ -61,6 +66,7 @@ const App: React.SFC<AppProps> = () => {
               books={books}
               loading={loading}
               searchBooks={searchBooks}
+              isLoaded={isLoaded}
             />
           )}
         />
