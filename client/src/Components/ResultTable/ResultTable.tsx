@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { BookTable } from '../BookTable';
 import { Book } from './../../../../classes/Book';
 import './ResultTable.css';
 
@@ -27,20 +28,10 @@ export const ResultTable: React.SFC<ResultTableProps> = ({
             <th className="th">Other possible matches</th>
             <th className="th">Author</th>
           </tr>
-          {bookList
-            .filter(t => t !== bookList[0])
-            .map((b, i) => {
-              return (
-                <tr
-                  className="tr"
-                  key={b.title + i}
-                  onClick={() => setDisplayed(b)}
-                >
-                  <td className="td">{b.title}</td>
-                  <td className="td">{b.author}</td>
-                </tr>
-              );
-            })}
+          <BookTable
+            books={bookList.filter(b => b !== bookList[0])}
+            setDisplayed={setDisplayed}
+          />
         </tbody>
       </table>
     </div>

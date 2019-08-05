@@ -15,6 +15,8 @@ export interface ContainerProps {
   loading: boolean;
   searchBooks: Function;
   isLoaded: boolean;
+  addBookToLibrary: Function;
+  library: Array<IBook>;
 }
 
 export const Container: React.SFC<ContainerProps> = ({
@@ -23,14 +25,16 @@ export const Container: React.SFC<ContainerProps> = ({
   books,
   loading,
   searchBooks,
-  isLoaded
+  isLoaded,
+  addBookToLibrary,
+  library
 }) => {
   return (
     <Spring
       from={{ opacity: 0 }}
       to={{ opacity: 1 }}
       config={{ duration: 500 }}
-      delay={isLoaded ? 0 : 2000}
+      delay={isLoaded ? 0 : 1000}
     >
       {props => (
         <div className="lookup-container" style={props}>
@@ -53,7 +57,11 @@ export const Container: React.SFC<ContainerProps> = ({
                 >
                   {props => (
                     <div className="result-background" style={props}>
-                      <TitleDisplay book={displayed} />
+                      <TitleDisplay
+                        book={displayed}
+                        addBookToLibrary={addBookToLibrary}
+                        library={library}
+                      />
                       <ResultTable
                         bookList={books}
                         setDisplayed={setDisplayed}
