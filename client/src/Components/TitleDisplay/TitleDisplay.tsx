@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Spring } from 'react-spring/renderprops';
 import { IBook } from '../../../../interfaces/IBook';
+import { AddToLibrary } from '../Buttons/AddToLibrary';
 import './TitleDisplay.css';
 
 export interface TitleDisplayProps {
@@ -65,9 +66,7 @@ export const TitleDisplay: React.SFC<TitleDisplayProps> = ({
                 </a>
                 <p>Click image to see title on Google Books</p>
                 {addBookToLibrary && !library!.includes(book) && (
-                  <button onClick={() => addBookToLibrary(book)}>
-                    I own this book
-                  </button>
+                  <AddToLibrary book={book} addToLibrary={addBookToLibrary} />
                 )}
                 {removeBookFromLibrary && (
                   <button

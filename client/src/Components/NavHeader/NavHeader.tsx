@@ -5,22 +5,30 @@ import './NavHeader.css';
 export interface NavHeaderProps {}
 
 export const NavHeader: React.SFC<NavHeaderProps> = () => {
-  const [active, setActive] = React.useState('search');
+  const getActive = (path: string) => {
+    switch (path) {
+      case '/':
+        return 'search';
+      case '/library/':
+        return 'library';
+      case '/about/':
+        return 'about';
+      default:
+        return 'search';
+    }
+  };
+
+  const active = getActive(window.location.pathname);
 
   React.useEffect(() => {
-    document.getElementById(active)!.classList.add('active');
+    activator(active);
   }, [active]);
 
   const activator = (id: string): void => {
-    const links = document.getElementsByClassName('link');
-    for (let i = 0; i < links.length; i++) {
-      if (links[i].id === id) {
-        links[i].classList.add('active');
-        setActive(links[i].id);
-      } else {
-        links[i].classList.remove('active');
-      }
-    }
+    document.getElementById(id)!.classList.add('active');
+    Array.from(document.getElementsByClassName('link'))
+      .filter(l => l.id !== id)
+      .map(inactive => inactive.classList.remove('active'));
   };
 
   return (
