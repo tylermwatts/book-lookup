@@ -1,0 +1,15 @@
+.table-container {
+  display: flex;
+  justify-content: center;
+}
+.tr {
+  cursor: pointer;
+}
+.td {
+  border: 1px solid black;
+  text-align: center;
+  padding: 0.25em;
+}
+.th {
+  border: 1px solid black;
+}

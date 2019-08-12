@@ -6,6 +6,7 @@ import { About } from './Components/About';
 import { BooksOwned } from './Components/BooksOwned';
 import { Container } from './Components/Container';
 import { NavHeader } from './Components/NavHeader';
+import { Wishlist } from './Components/Wishlist';
 
 export interface AppProps {}
 
@@ -27,12 +28,17 @@ const App: React.SFC<AppProps> = () => {
     const bookLibrary = localStorage.getItem('book-library');
     return bookLibrary !== null ? JSON.parse(bookLibrary) : [];
   };
+  const initialWishlist = () => {
+    const bookWishlist = localStorage.getItem('wish-list');
+    return bookWishlist !== null ? JSON.parse(bookWishlist) : [];
+  };
   const [displayed, setDisplayed] = React.useState(initDisplayed);
   const [books, setBooks] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
   const [isLoaded, setIsLoaded] = React.useState(false);
   const [library, setLibrary] = React.useState(initialLibrary);
-  const [wishlist, setWishlist] = React.useState([]);
+  const [wishlist, setWishlist] = React.useState(initialWishlist);
+  const [snackbarText, setSnackbarText] = React.useState('');
 
   React.useEffect(() => {
     setIsLoaded(true);
@@ -41,12 +47,13 @@ const App: React.SFC<AppProps> = () => {
   React.useEffect(() => {
     const persistToLibrary = () => {
       localStorage.setItem('book-library', JSON.stringify(library));
+      localStorage.setItem('wish-list', JSON.stringify(wishlist));
     };
     window.addEventListener('beforeunload', persistToLibrary);
     return () => {
       window.removeEventListener('beforeunload', persistToLibrary);
     };
-  }, [library]);
+  }, [library, wishlist]);
 
   const searchBooks = (text: string): void => {
     setLoading(true);
@@ -69,14 +76,39 @@ const App: React.SFC<AppProps> = () => {
       })
       .catch(err => console.log(err));
   };
+  const showSnackbar = () => {
+    const x = document.getElementById('snackbar');
+    x!.className = 'show';
+    setTimeout(function() {
+      x!.className = x!.className.replace('show', '');
+    }, 3000);
+  };
   const addBookToLibrary = (book: IBook) => {
     if (!library.includes(book)) {
       setLibrary([...library, book]);
+      setSnackbarText('Book added to library.');
+      showSnackbar();
     }
   };
   const removeBookFromLibrary = (book: IBook) => {
     if (library.includes(book)) {
       setLibrary(library.filter((b: IBook) => b !== book));
+      setSnackbarText('Book removed from library.');
+      showSnackbar();
+    }
+  };
+  const addBookToWishlist = (book: IBook) => {
+    if (!wishlist.includes(book)) {
+      setWishlist([...wishlist, book]);
+      setSnackbarText('Book added to wishlist.');
+      showSnackbar();
+    }
+  };
+  const removeBookFromWishlist = (book: IBook) => {
+    if (wishlist.includes(book)) {
+      setWishlist(wishlist.filter((b: IBook) => b !== book));
+      setSnackbarText('Book removed from wishlist.');
+      showSnackbar();
     }
   };
   return (
@@ -95,12 +127,14 @@ const App: React.SFC<AppProps> = () => {
               searchBooks={searchBooks}
               isLoaded={isLoaded}
               addBookToLibrary={addBookToLibrary}
+              addBookToWishlist={addBookToWishlist}
               library={library}
+              wishlist={wishlist}
             />
           )}
         />
         <Route
-          path="/library/"
+          path="/library"
           render={() => (
             <BooksOwned
               ownedBooks={library}
@@ -108,8 +142,18 @@ const App: React.SFC<AppProps> = () => {
             />
           )}
         />
-        <Route path="/about/" component={About} />
+        <Route
+          path="/wishlist"
+          render={() => (
+            <Wishlist
+              wishlist={wishlist}
+              removeFromWishlist={removeBookFromWishlist}
+            />
+          )}
+        />
+        <Route path="/about" component={About} />
       </div>
+      <div id="snackbar">{snackbarText}</div>
     </Router>
   );
 };

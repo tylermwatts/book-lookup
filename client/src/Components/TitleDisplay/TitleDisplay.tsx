@@ -2,21 +2,28 @@ import * as React from 'react';
 import { Spring } from 'react-spring/renderprops';
 import { IBook } from '../../../../interfaces/IBook';
 import { AddToLibrary } from '../Buttons/AddToLibrary';
+import { AddToWishlist } from '../Buttons/AddToWishlist';
 import './TitleDisplay.css';
 
 export interface TitleDisplayProps {
   book: IBook;
   addBookToLibrary?: Function;
+  addBookToWishlist?: Function;
   removeBookFromLibrary?: Function;
+  removeBookFromWishlist?: Function;
   library?: Array<IBook>;
+  wishlist?: Array<IBook>;
   setDisplayed?: Function;
 }
 
 export const TitleDisplay: React.SFC<TitleDisplayProps> = ({
   book,
   library,
+  wishlist,
   addBookToLibrary,
+  addBookToWishlist,
   removeBookFromLibrary,
+  removeBookFromWishlist,
   setDisplayed
 }) => {
   return (
@@ -68,6 +75,14 @@ export const TitleDisplay: React.SFC<TitleDisplayProps> = ({
                 {addBookToLibrary && !library!.includes(book) && (
                   <AddToLibrary book={book} addToLibrary={addBookToLibrary} />
                 )}
+                {addBookToWishlist &&
+                  !wishlist!.includes(book) &&
+                  !library!.includes(book) && (
+                    <AddToWishlist
+                      book={book}
+                      addToWishlist={addBookToWishlist}
+                    />
+                  )}
                 {removeBookFromLibrary && (
                   <button
                     onClick={() => {
@@ -76,6 +91,16 @@ export const TitleDisplay: React.SFC<TitleDisplayProps> = ({
                     }}
                   >
                     Remove from library
+                  </button>
+                )}
+                {removeBookFromWishlist && (
+                  <button
+                    onClick={() => {
+                      removeBookFromWishlist(book);
+                      setDisplayed!(library ? library[0] : null);
+                    }}
+                  >
+                    Remove from wishlist
                   </button>
                 )}
               </>

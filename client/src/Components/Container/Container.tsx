@@ -16,7 +16,9 @@ export interface ContainerProps {
   searchBooks: Function;
   isLoaded: boolean;
   addBookToLibrary: Function;
+  addBookToWishlist: Function;
   library: Array<IBook>;
+  wishlist: Array<IBook>;
 }
 
 export const Container: React.SFC<ContainerProps> = ({
@@ -27,7 +29,9 @@ export const Container: React.SFC<ContainerProps> = ({
   searchBooks,
   isLoaded,
   addBookToLibrary,
-  library
+  addBookToWishlist,
+  library,
+  wishlist
 }) => {
   return (
     <Spring
@@ -60,7 +64,9 @@ export const Container: React.SFC<ContainerProps> = ({
                       <TitleDisplay
                         book={displayed}
                         addBookToLibrary={addBookToLibrary}
+                        addBookToWishlist={addBookToWishlist}
                         library={library}
+                        wishlist={wishlist}
                       />
                       <ResultTable
                         bookList={books}

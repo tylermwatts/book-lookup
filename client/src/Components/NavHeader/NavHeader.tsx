@@ -9,10 +9,12 @@ export const NavHeader: React.SFC<NavHeaderProps> = () => {
     switch (path) {
       case '/':
         return 'search';
-      case '/library/':
+      case '/library':
         return 'library';
-      case '/about/':
+      case '/about':
         return 'about';
+      case '/wishlist':
+        return 'wishlist';
       default:
         return 'search';
     }
@@ -49,9 +51,19 @@ export const NavHeader: React.SFC<NavHeaderProps> = () => {
             id="library"
             className="link"
             onClick={() => activator('library')}
-            to="/library/"
+            to="/library"
           >
             Books Owned
+          </Link>
+        </li>
+        <li className="li">
+          <Link
+            id="wishlist"
+            className="link"
+            onClick={() => activator('wishlist')}
+            to="/wishlist"
+          >
+            My Wishlist
           </Link>
         </li>
         <li className="li">
@@ -59,7 +71,7 @@ export const NavHeader: React.SFC<NavHeaderProps> = () => {
             id="about"
             className="link"
             onClick={() => activator('about')}
-            to="/about/"
+            to="/about"
           >
             About
           </Link>

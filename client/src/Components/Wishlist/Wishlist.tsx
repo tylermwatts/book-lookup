@@ -3,21 +3,20 @@ import { Spring } from 'react-spring/renderprops';
 import { IBook } from '../../../../interfaces/IBook';
 import { BookTable } from '../BookTable';
 import { TitleDisplay } from '../TitleDisplay';
-import './BooksOwned.css';
 
-export interface BooksOwnedProps {
-  ownedBooks: Array<IBook>;
-  removeFromLibrary: Function;
+export interface WishlistProps {
+  wishlist: Array<IBook>;
+  removeFromWishlist: Function;
 }
 
-export const BooksOwned: React.SFC<BooksOwnedProps> = ({
-  ownedBooks,
-  removeFromLibrary
+export const Wishlist: React.SFC<WishlistProps> = ({
+  wishlist,
+  removeFromWishlist
 }) => {
-  const [displayed, setDisplayed] = React.useState(ownedBooks[0] || null);
+  const [displayed, setDisplayed] = React.useState(wishlist[0] || null);
   React.useEffect(() => {
-    setDisplayed(ownedBooks[0]);
-  }, [ownedBooks]);
+    setDisplayed(wishlist[0]);
+  }, [wishlist]);
   return (
     <Spring
       to={{ opacity: 1 }}
@@ -27,13 +26,13 @@ export const BooksOwned: React.SFC<BooksOwnedProps> = ({
       {props => (
         <div style={props} className="background">
           <div className="background-container">
-            <h1 style={{ textDecoration: 'underline' }}>Books I own</h1>
+            <h1 style={{ textDecoration: 'underline' }}>My wishlist</h1>
             {displayed ? (
               <>
                 <TitleDisplay
                   book={displayed}
                   setDisplayed={setDisplayed}
-                  removeBookFromLibrary={removeFromLibrary}
+                  removeBookFromWishlist={removeFromWishlist}
                 />
                 <div className="table-container">
                   <table>
@@ -42,18 +41,15 @@ export const BooksOwned: React.SFC<BooksOwnedProps> = ({
                         <th className="th">Title</th>
                         <th className="th">Author</th>
                       </tr>
-                      <BookTable
-                        books={ownedBooks}
-                        setDisplayed={setDisplayed}
-                      />
+                      <BookTable books={wishlist} setDisplayed={setDisplayed} />
                     </tbody>
                   </table>
                 </div>
               </>
             ) : (
               <div>
-                No books in your library. Search for books to add them to your
-                library.
+                No books in your wishlist. Search for books to add them to your
+                wishlist.
               </div>
             )}
           </div>
