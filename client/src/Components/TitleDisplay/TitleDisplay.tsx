@@ -26,6 +26,7 @@ export const TitleDisplay: React.SFC<TitleDisplayProps> = ({
   removeBookFromWishlist,
   setDisplayed
 }) => {
+  React.useEffect(() => {}, [wishlist, library]);
   return (
     <Spring
       to={{ opacity: 1 }}
@@ -72,9 +73,20 @@ export const TitleDisplay: React.SFC<TitleDisplayProps> = ({
                   <img src={book.thumbnail} alt="book cover" />
                 </a>
                 <p>Click image to see title on Google Books</p>
-                {addBookToLibrary && !library!.includes(book) && (
-                  <AddToLibrary book={book} addToLibrary={addBookToLibrary} />
-                )}
+                {addBookToLibrary &&
+                  !library!
+                    .map(b => b.ISBN.ISBN_13)
+                    .includes(book.ISBN.ISBN_13) && (
+                    <AddToLibrary book={book} addToLibrary={addBookToLibrary} />
+                  )}
+                {library &&
+                  library
+                    .map(b => b.ISBN.ISBN_13)
+                    .includes(book.ISBN.ISBN_13) && (
+                    <div>
+                      <i>You own this book</i>
+                    </div>
+                  )}
                 {addBookToWishlist &&
                   wishlist !== (undefined && null) &&
                   library !== (undefined && null) &&

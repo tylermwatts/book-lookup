@@ -91,7 +91,9 @@ const App: React.SFC<AppProps> = () => {
       if (
         wishlist.map((b: IBook) => b.ISBN.ISBN_13).includes(book.ISBN.ISBN_13)
       ) {
-        setWishlist(wishlist.filter((b: IBook) => b !== book));
+        setWishlist(
+          wishlist.filter((b: IBook) => b.ISBN.ISBN_13 !== book.ISBN.ISBN_13)
+        );
         setSnackbarText('Book moved from wishlist to library.');
       } else {
         setSnackbarText('Book added to library.');
@@ -101,7 +103,9 @@ const App: React.SFC<AppProps> = () => {
   };
   const removeBookFromLibrary = (book: IBook) => {
     if (library.map((b: IBook) => b.ISBN.ISBN_13).includes(book.ISBN.ISBN_13)) {
-      setLibrary(library.filter((b: IBook) => b !== book));
+      setLibrary(
+        library.filter((b: IBook) => b.ISBN.ISBN_13 !== book.ISBN.ISBN_13)
+      );
       setSnackbarText('Book removed from library.');
       showSnackbar();
     }
