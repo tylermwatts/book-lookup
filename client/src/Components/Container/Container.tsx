@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Spring } from 'react-spring/renderprops';
 import { IBook } from '../../../../interfaces/IBook';
-import loadingAnimation from '../../img/loadingAnimation.gif';
+import loadingAnimation from '../../img/loadingAnimation.svg';
 import { ResultTable } from '../ResultTable';
 import { SearchField } from '../SearchField';
 import { TitleDisplay } from '../TitleDisplay';
@@ -48,8 +48,20 @@ export const Container: React.SFC<ContainerProps> = ({
             <SearchField searchBooks={searchBooks} />
           </div>
           {loading ? (
-            <div style={{ textAlign: 'center', margin: '1em' }}>
-              <img src={loadingAnimation} alt="loading animation" />
+            <div style={{ textAlign: 'center' }}>
+              <div
+                style={{
+                  display: 'inline-block',
+                  margin: '0 auto',
+                  padding: '1em',
+                  background: '#fcfcfc'
+                }}
+              >
+                <div style={{ margin: '1em' }}>
+                  <i>Loading...</i>
+                </div>
+                <img src={loadingAnimation} alt="loading animation" />
+              </div>
             </div>
           ) : (
             <>
