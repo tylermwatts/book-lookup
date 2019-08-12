@@ -76,12 +76,26 @@ export const TitleDisplay: React.SFC<TitleDisplayProps> = ({
                   <AddToLibrary book={book} addToLibrary={addBookToLibrary} />
                 )}
                 {addBookToWishlist &&
-                  !wishlist!.includes(book) &&
-                  !library!.includes(book) && (
+                  wishlist !== (undefined && null) &&
+                  library !== (undefined && null) &&
+                  !wishlist
+                    .map(b => b.ISBN.ISBN_13)
+                    .includes(book.ISBN.ISBN_13) &&
+                  !library
+                    .map(b => b.ISBN.ISBN_13)
+                    .includes(book.ISBN.ISBN_13) && (
                     <AddToWishlist
                       book={book}
                       addToWishlist={addBookToWishlist}
                     />
+                  )}
+                {wishlist &&
+                  wishlist
+                    .map(b => b.ISBN.ISBN_13)
+                    .includes(book.ISBN.ISBN_13) && (
+                    <div>
+                      <i>This book is on your wishlist.</i>
+                    </div>
                   )}
                 {removeBookFromLibrary && (
                   <button

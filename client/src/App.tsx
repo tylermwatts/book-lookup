@@ -84,28 +84,41 @@ const App: React.SFC<AppProps> = () => {
     }, 3000);
   };
   const addBookToLibrary = (book: IBook) => {
-    if (!library.includes(book)) {
+    if (
+      !library.map((b: IBook) => b.ISBN.ISBN_13).includes(book.ISBN.ISBN_13)
+    ) {
       setLibrary([...library, book]);
-      setSnackbarText('Book added to library.');
+      if (
+        wishlist.map((b: IBook) => b.ISBN.ISBN_13).includes(book.ISBN.ISBN_13)
+      ) {
+        setWishlist(wishlist.filter((b: IBook) => b !== book));
+        setSnackbarText('Book moved from wishlist to library.');
+      } else {
+        setSnackbarText('Book added to library.');
+      }
       showSnackbar();
     }
   };
   const removeBookFromLibrary = (book: IBook) => {
-    if (library.includes(book)) {
+    if (library.map((b: IBook) => b.ISBN.ISBN_13).includes(book.ISBN.ISBN_13)) {
       setLibrary(library.filter((b: IBook) => b !== book));
       setSnackbarText('Book removed from library.');
       showSnackbar();
     }
   };
   const addBookToWishlist = (book: IBook) => {
-    if (!wishlist.includes(book)) {
+    if (
+      !wishlist.map((b: IBook) => b.ISBN.ISBN_13).includes(book.ISBN.ISBN_13)
+    ) {
       setWishlist([...wishlist, book]);
       setSnackbarText('Book added to wishlist.');
       showSnackbar();
     }
   };
   const removeBookFromWishlist = (book: IBook) => {
-    if (wishlist.includes(book)) {
+    if (
+      wishlist.map((b: IBook) => b.ISBN.ISBN_13).includes(book.ISBN.ISBN_13)
+    ) {
       setWishlist(wishlist.filter((b: IBook) => b !== book));
       setSnackbarText('Book removed from wishlist.');
       showSnackbar();

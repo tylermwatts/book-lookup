@@ -16,7 +16,7 @@ export const About: React.SFC<AboutProps> = () => {
           <div className="about-container">
             <h1 className="h1">About</h1>
             <main>
-              <p className="p">{`This is a project made by Tyler Watts to learn TypeScript and React Router. It uses the Google Books API to fetch titles and display data.`}</p>
+              <p className="p">{`This is a project made by Tyler Watts to learn TypeScript, React Router, and React Spring. It uses the Google Books API to fetch titles and display data. Your library and wishlist are persisted to local storage in your browser.`}</p>
             </main>
           </div>
         </div>
