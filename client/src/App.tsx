@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { IBook } from './../../interfaces/IBook';
 import './App.css';
 import { About } from './Components/About';
 import { BooksOwned } from './Components/BooksOwned';
 import { Container } from './Components/Container';
 import { NavHeader } from './Components/NavHeader';
 import { Wishlist } from './Components/Wishlist';
+import { Book } from '../../classes/Book';
 
-export interface AppProps {}
+export interface AppProps { }
 
 const App: React.SFC<AppProps> = () => {
-  const initDisplayed: IBook = {
+  const initDisplayed: Book = {
     author: '',
     title: '',
     publisher: '',
@@ -79,20 +79,20 @@ const App: React.SFC<AppProps> = () => {
   const showSnackbar = () => {
     const x = document.getElementById('snackbar');
     x!.className = 'show';
-    setTimeout(function() {
+    setTimeout(function () {
       x!.className = x!.className.replace('show', '');
     }, 3000);
   };
-  const addBookToLibrary = (book: IBook) => {
+  const addBookToLibrary = (book: Book) => {
     if (
-      !library.map((b: IBook) => b.ISBN.ISBN_13).includes(book.ISBN.ISBN_13)
+      !library.map((b: Book) => b.ISBN.ISBN_13).includes(book.ISBN.ISBN_13)
     ) {
       setLibrary([...library, book]);
       if (
-        wishlist.map((b: IBook) => b.ISBN.ISBN_13).includes(book.ISBN.ISBN_13)
+        wishlist.map((b: Book) => b.ISBN.ISBN_13).includes(book.ISBN.ISBN_13)
       ) {
         setWishlist(
-          wishlist.filter((b: IBook) => b.ISBN.ISBN_13 !== book.ISBN.ISBN_13)
+          wishlist.filter((b: Book) => b.ISBN.ISBN_13 !== book.ISBN.ISBN_13)
         );
         setSnackbarText('Book moved from wishlist to library.');
       } else {
@@ -101,29 +101,29 @@ const App: React.SFC<AppProps> = () => {
       showSnackbar();
     }
   };
-  const removeBookFromLibrary = (book: IBook) => {
-    if (library.map((b: IBook) => b.ISBN.ISBN_13).includes(book.ISBN.ISBN_13)) {
+  const removeBookFromLibrary = (book: Book) => {
+    if (library.map((b: Book) => b.ISBN.ISBN_13).includes(book.ISBN.ISBN_13)) {
       setLibrary(
-        library.filter((b: IBook) => b.ISBN.ISBN_13 !== book.ISBN.ISBN_13)
+        library.filter((b: Book) => b.ISBN.ISBN_13 !== book.ISBN.ISBN_13)
       );
       setSnackbarText('Book removed from library.');
       showSnackbar();
     }
   };
-  const addBookToWishlist = (book: IBook) => {
+  const addBookToWishlist = (book: Book) => {
     if (
-      !wishlist.map((b: IBook) => b.ISBN.ISBN_13).includes(book.ISBN.ISBN_13)
+      !wishlist.map((b: Book) => b.ISBN.ISBN_13).includes(book.ISBN.ISBN_13)
     ) {
       setWishlist([...wishlist, book]);
       setSnackbarText('Book added to wishlist.');
       showSnackbar();
     }
   };
-  const removeBookFromWishlist = (book: IBook) => {
+  const removeBookFromWishlist = (book: Book) => {
     if (
-      wishlist.map((b: IBook) => b.ISBN.ISBN_13).includes(book.ISBN.ISBN_13)
+      wishlist.map((b: Book) => b.ISBN.ISBN_13).includes(book.ISBN.ISBN_13)
     ) {
-      setWishlist(wishlist.filter((b: IBook) => b !== book));
+      setWishlist(wishlist.filter((b: Book) => b !== book));
       setSnackbarText('Book removed from wishlist.');
       showSnackbar();
     }
