@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Spring } from 'react-spring/renderprops';
-import { IBook } from '../../../../interfaces/IBook';
 import { BookTable } from '../BookTable';
 import { TitleDisplay } from '../TitleDisplay';
+import { Book } from '../../../../classes/Book';
 
 export interface WishlistProps {
-  library: Array<IBook>;
-  wishlist: Array<IBook>;
+  library: Array<Book>;
+  wishlist: Array<Book>;
   addToOwned: Function;
   removeFromWishlist: Function;
 }
@@ -53,11 +53,11 @@ export const Wishlist: React.SFC<WishlistProps> = ({
                 </div>
               </>
             ) : (
-              <div>
-                No books in your wishlist. Search for books to add them to your
-                wishlist.
+                <div>
+                  No books in your wishlist. Search for books to add them to your
+                  wishlist.
               </div>
-            )}
+              )}
           </div>
         </div>
       )}

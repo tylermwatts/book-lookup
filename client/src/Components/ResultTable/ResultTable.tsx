@@ -29,13 +29,13 @@ export const ResultTable: React.SFC<ResultTableProps> = ({
             <th className="th">Author</th>
           </tr>
           <BookTable
-            books={bookList.filter(b => b !== bookList[0])}
+            books={bookList.filter((b: Book) => b !== bookList[0])}
             setDisplayed={setDisplayed}
           />
         </tbody>
       </table>
     </div>
   ) : (
-    <table />
-  );
+      <table />
+    );
 };

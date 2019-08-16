@@ -1,18 +1,18 @@
 import * as React from 'react';
 import { Spring } from 'react-spring/renderprops';
-import { IBook } from '../../../../interfaces/IBook';
 import { AddToLibrary } from '../Buttons/AddToLibrary';
 import { AddToWishlist } from '../Buttons/AddToWishlist';
 import './TitleDisplay.css';
+import { Book } from '../../../../classes/Book';
 
 export interface TitleDisplayProps {
-  book: IBook;
+  book: Book;
   addBookToLibrary?: Function;
   addBookToWishlist?: Function;
   removeBookFromLibrary?: Function;
   removeBookFromWishlist?: Function;
-  library?: Array<IBook>;
-  wishlist?: Array<IBook>;
+  library?: Array<Book>;
+  wishlist?: Array<Book>;
   setDisplayed?: Function;
 }
 
@@ -26,7 +26,7 @@ export const TitleDisplay: React.SFC<TitleDisplayProps> = ({
   removeBookFromWishlist,
   setDisplayed
 }) => {
-  React.useEffect(() => {}, [wishlist, library]);
+  React.useEffect(() => { }, [wishlist, library]);
   return (
     <Spring
       to={{ opacity: 1 }}
@@ -75,7 +75,7 @@ export const TitleDisplay: React.SFC<TitleDisplayProps> = ({
                 <p>Click image to see title on Google Books</p>
                 {addBookToLibrary &&
                   !library!
-                    .map(b => b.ISBN.ISBN_13)
+                    .map((b: Book) => b.ISBN.ISBN_13)
                     .includes(book.ISBN.ISBN_13) && (
                     <>
                       <AddToLibrary
@@ -87,7 +87,7 @@ export const TitleDisplay: React.SFC<TitleDisplayProps> = ({
                   )}
                 {library &&
                   library
-                    .map(b => b.ISBN.ISBN_13)
+                    .map((b: Book) => b.ISBN.ISBN_13)
                     .includes(book.ISBN.ISBN_13) && (
                     <div>
                       <i>You own this book</i>
@@ -97,10 +97,10 @@ export const TitleDisplay: React.SFC<TitleDisplayProps> = ({
                   wishlist !== (undefined && null) &&
                   library !== (undefined && null) &&
                   !wishlist
-                    .map(b => b.ISBN.ISBN_13)
+                    .map((b: Book) => b.ISBN.ISBN_13)
                     .includes(book.ISBN.ISBN_13) &&
                   !library
-                    .map(b => b.ISBN.ISBN_13)
+                    .map((b: Book) => b.ISBN.ISBN_13)
                     .includes(book.ISBN.ISBN_13) && (
                     <AddToWishlist
                       book={book}
@@ -109,7 +109,7 @@ export const TitleDisplay: React.SFC<TitleDisplayProps> = ({
                   )}
                 {wishlist &&
                   wishlist
-                    .map(b => b.ISBN.ISBN_13)
+                    .map((b: Book) => b.ISBN.ISBN_13)
                     .includes(book.ISBN.ISBN_13) && (
                     <div>
                       <i>This book is on your wishlist.</i>

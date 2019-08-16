@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Spring } from 'react-spring/renderprops';
-import { IBook } from '../../../../interfaces/IBook';
 import loadingAnimation from '../../img/loadingAnimation.svg';
 import { ResultTable } from '../ResultTable';
 import { SearchField } from '../SearchField';
@@ -9,7 +8,7 @@ import { Book } from './../../../../classes/Book';
 import './Container.css';
 
 export interface ContainerProps {
-  displayed: IBook;
+  displayed: Book;
   setDisplayed: Function;
   books: Array<Book>;
   loading: boolean;
@@ -17,8 +16,8 @@ export interface ContainerProps {
   isLoaded: boolean;
   addBookToLibrary: Function;
   addBookToWishlist: Function;
-  library: Array<IBook>;
-  wishlist: Array<IBook>;
+  library: Array<Book>;
+  wishlist: Array<Book>;
 }
 
 export const Container: React.SFC<ContainerProps> = ({
@@ -64,32 +63,32 @@ export const Container: React.SFC<ContainerProps> = ({
               </div>
             </div>
           ) : (
-            <>
-              {displayed.title ? (
-                <Spring
-                  from={{ opacity: 0 }}
-                  to={{ opacity: 1 }}
-                  config={{ duration: 300 }}
-                >
-                  {props => (
-                    <div className="result-background" style={props}>
-                      <TitleDisplay
-                        book={displayed}
-                        addBookToLibrary={addBookToLibrary}
-                        addBookToWishlist={addBookToWishlist}
-                        library={library}
-                        wishlist={wishlist}
-                      />
-                      <ResultTable
-                        bookList={books}
-                        setDisplayed={setDisplayed}
-                      />
-                    </div>
-                  )}
-                </Spring>
-              ) : null}
-            </>
-          )}
+              <>
+                {displayed.title ? (
+                  <Spring
+                    from={{ opacity: 0 }}
+                    to={{ opacity: 1 }}
+                    config={{ duration: 300 }}
+                  >
+                    {props => (
+                      <div className="result-background" style={props}>
+                        <TitleDisplay
+                          book={displayed}
+                          addBookToLibrary={addBookToLibrary}
+                          addBookToWishlist={addBookToWishlist}
+                          library={library}
+                          wishlist={wishlist}
+                        />
+                        <ResultTable
+                          bookList={books}
+                          setDisplayed={setDisplayed}
+                        />
+                      </div>
+                    )}
+                  </Spring>
+                ) : null}
+              </>
+            )}
         </div>
       )}
     </Spring>

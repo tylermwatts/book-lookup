@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { IBook } from '../../../../interfaces/IBook';
 import './BookTable.css';
+import { Book } from '../../../../classes/Book';
 
 export interface BookTableProps {
-  books: Array<IBook>;
+  books: Array<Book>;
   setDisplayed: Function;
 }
 
@@ -13,7 +13,7 @@ export const BookTable: React.SFC<BookTableProps> = ({
 }) => {
   return (
     <>
-      {books.map((b, i) => {
+      {books.map((b: Book, i: number) => {
         return (
           <tr className="tr" key={b.title + i} onClick={() => setDisplayed(b)}>
             <td className="td">{b.title}</td>

@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { IBook } from '../../../../../interfaces/IBook';
+import { Book } from '../../../../../classes/Book';
 
 export interface AddToLibraryProps {
-  book: IBook;
+  book: Book;
   addToLibrary: Function;
 }
 

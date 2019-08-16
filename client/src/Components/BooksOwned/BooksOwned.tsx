@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Spring } from 'react-spring/renderprops';
-import { IBook } from '../../../../interfaces/IBook';
 import { BookTable } from '../BookTable';
 import { TitleDisplay } from '../TitleDisplay';
 import './BooksOwned.css';
+import { Book } from '../../../../classes/Book';
 
 export interface BooksOwnedProps {
-  ownedBooks: Array<IBook>;
+  ownedBooks: Array<Book>;
   removeFromLibrary: Function;
 }
 
@@ -51,11 +51,11 @@ export const BooksOwned: React.SFC<BooksOwnedProps> = ({
                 </div>
               </>
             ) : (
-              <div>
-                No books in your library. Search for books to add them to your
-                library.
+                <div>
+                  No books in your library. Search for books to add them to your
+                  library.
               </div>
-            )}
+              )}
           </div>
         </div>
       )}
