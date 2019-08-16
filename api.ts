@@ -26,6 +26,7 @@ const api = (app: express.Application) => {
             a.volumeInfo.imageLinks &&
             a.volumeInfo.publisher &&
             a.volumeInfo.industryIdentifiers &&
+            a.volumeInfo.description &&
             a.volumeInfo.industryIdentifiers.find(
               (i: IndustryIdentifier) =>
                 i.type === 'ISBN_10' || i.type === 'ISBN_13'
