@@ -163,8 +163,10 @@ const App: React.SFC<AppProps> = () => {
           path="/wishlist"
           render={() => (
             <Wishlist
+              library={library}
               wishlist={wishlist}
               removeFromWishlist={removeBookFromWishlist}
+              addToOwned={addBookToLibrary}
             />
           )}
         />

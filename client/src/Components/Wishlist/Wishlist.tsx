@@ -5,12 +5,16 @@ import { BookTable } from '../BookTable';
 import { TitleDisplay } from '../TitleDisplay';
 
 export interface WishlistProps {
+  library: Array<IBook>;
   wishlist: Array<IBook>;
+  addToOwned: Function;
   removeFromWishlist: Function;
 }
 
 export const Wishlist: React.SFC<WishlistProps> = ({
+  library,
   wishlist,
+  addToOwned,
   removeFromWishlist
 }) => {
   const [displayed, setDisplayed] = React.useState(wishlist[0] || null);
@@ -30,9 +34,11 @@ export const Wishlist: React.SFC<WishlistProps> = ({
             {displayed ? (
               <>
                 <TitleDisplay
+                  library={library}
                   book={displayed}
                   setDisplayed={setDisplayed}
                   removeBookFromWishlist={removeFromWishlist}
+                  addBookToLibrary={addToOwned}
                 />
                 <div className="table-container">
                   <table>

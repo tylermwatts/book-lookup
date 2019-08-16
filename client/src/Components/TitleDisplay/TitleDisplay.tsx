@@ -77,7 +77,13 @@ export const TitleDisplay: React.SFC<TitleDisplayProps> = ({
                   !library!
                     .map(b => b.ISBN.ISBN_13)
                     .includes(book.ISBN.ISBN_13) && (
-                    <AddToLibrary book={book} addToLibrary={addBookToLibrary} />
+                    <>
+                      <AddToLibrary
+                        book={book}
+                        addToLibrary={addBookToLibrary}
+                      />
+                      <br />
+                    </>
                   )}
                 {library &&
                   library
