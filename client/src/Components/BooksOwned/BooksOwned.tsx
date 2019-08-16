@@ -3,7 +3,7 @@ import { Spring } from 'react-spring/renderprops';
 import { BookTable } from '../BookTable';
 import { TitleDisplay } from '../TitleDisplay';
 import './BooksOwned.css';
-import { Book } from '../../../../classes/Book';
+import { Book } from '../../../classes/Book';
 
 export interface BooksOwnedProps {
   ownedBooks: Array<Book>;

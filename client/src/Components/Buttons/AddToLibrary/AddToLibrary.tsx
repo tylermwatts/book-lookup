@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Book } from '../../../../../classes/Book';
+import { Book } from '../../../../classes/Book';
 
 export interface AddToLibraryProps {
   book: Book;

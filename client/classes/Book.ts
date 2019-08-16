@@ -1,7 +1,6 @@
-import { IBook } from '../interfaces/IBook';
-import { IVolume } from '../interfaces/IVolume';
+import { IVolume } from '../../interfaces/IVolume';
 
-export class Book implements IBook {
+export class Book {
   constructor(volume: IVolume) {
     this.author = volume.volumeInfo.authors[0];
     this.title = volume.volumeInfo.title;

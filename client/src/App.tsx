@@ -6,7 +6,7 @@ import { BooksOwned } from './Components/BooksOwned';
 import { Container } from './Components/Container';
 import { NavHeader } from './Components/NavHeader';
 import { Wishlist } from './Components/Wishlist';
-import { Book } from '../../classes/Book';
+import { Book } from '../classes/Book';
 
 export interface AppProps { }
 

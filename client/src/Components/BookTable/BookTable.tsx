@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './BookTable.css';
-import { Book } from '../../../../classes/Book';
+import { Book } from '../../../classes/Book';
 
 export interface BookTableProps {
   books: Array<Book>;

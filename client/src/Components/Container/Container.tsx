@@ -4,7 +4,7 @@ import loadingAnimation from '../../img/loadingAnimation.svg';
 import { ResultTable } from '../ResultTable';
 import { SearchField } from '../SearchField';
 import { TitleDisplay } from '../TitleDisplay';
-import { Book } from './../../../../classes/Book';
+import { Book } from '../../../classes/Book';
 import './Container.css';
 
 export interface ContainerProps {

@@ -3,7 +3,7 @@ import { Spring } from 'react-spring/renderprops';
 import { AddToLibrary } from '../Buttons/AddToLibrary';
 import { AddToWishlist } from '../Buttons/AddToWishlist';
 import './TitleDisplay.css';
-import { Book } from '../../../../classes/Book';
+import { Book } from '../../../classes/Book';
 
 export interface TitleDisplayProps {
   book: Book;

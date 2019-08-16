@@ -1,5 +1,5 @@
 import express = require('express');
-import { Book } from './classes/Book';
+import { Book } from './client/classes/Book';
 import { IVolume } from './interfaces/IVolume';
 
 export type IndustryIdentifier = {
@@ -14,7 +14,7 @@ const api = (app: express.Application) => {
     async (req: express.Request, res: express.Response) => {
       const books = await fetch(
         `https://www.googleapis.com/books/v1/volumes?q=${
-          req.body.text
+        req.body.text
         }&key=${apiKey}`
       )
         .then((response: Response) => response.json())

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Spring } from 'react-spring/renderprops';
 import { BookTable } from '../BookTable';
 import { TitleDisplay } from '../TitleDisplay';
-import { Book } from '../../../../classes/Book';
+import { Book } from '../../../classes/Book';
 
 export interface WishlistProps {
   library: Array<Book>;
