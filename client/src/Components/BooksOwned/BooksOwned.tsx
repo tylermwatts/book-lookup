@@ -22,7 +22,7 @@ export const BooksOwned: React.SFC<BooksOwnedProps> = ({
     <Spring
       to={{ opacity: 1 }}
       from={{ opacity: 0 }}
-      config={{ duration: 500 }}
+      config={{ duration: 300 }}
     >
       {props => (
         <div style={props} className="background">

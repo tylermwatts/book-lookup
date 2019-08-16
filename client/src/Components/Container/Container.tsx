@@ -37,7 +37,7 @@ export const Container: React.SFC<ContainerProps> = ({
     <Spring
       from={{ opacity: 0 }}
       to={{ opacity: 1 }}
-      config={{ duration: 500 }}
+      config={{ duration: 300 }}
       delay={isLoaded ? 0 : 1000}
     >
       {props => (
@@ -69,7 +69,7 @@ export const Container: React.SFC<ContainerProps> = ({
                 <Spring
                   from={{ opacity: 0 }}
                   to={{ opacity: 1 }}
-                  config={{ duration: 500 }}
+                  config={{ duration: 300 }}
                 >
                   {props => (
                     <div className="result-background" style={props}>

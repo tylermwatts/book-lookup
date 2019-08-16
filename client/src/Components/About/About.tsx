@@ -9,7 +9,7 @@ export const About: React.SFC<AboutProps> = () => {
     <Spring
       from={{ opacity: 0 }}
       to={{ opacity: 1 }}
-      config={{ duration: 500 }}
+      config={{ duration: 300 }}
     >
       {props => (
         <div className="about" style={props}>
