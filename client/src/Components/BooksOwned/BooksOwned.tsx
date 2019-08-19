@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { Spring } from 'react-spring/renderprops';
-import { BookTable } from '../BookTable';
+import { Book } from '../../../classes/Book';
+import { BookTableContainer } from '../BookTableContainer';
+import { RemoveFromLibrary } from '../Buttons/RemoveFromLibrary';
 import { TitleDisplay } from '../TitleDisplay';
 import './BooksOwned.css';
-import { Book } from '../../../classes/Book';
 
 export interface BooksOwnedProps {
   ownedBooks: Array<Book>;
@@ -30,32 +31,25 @@ export const BooksOwned: React.SFC<BooksOwnedProps> = ({
             <h1 style={{ textDecoration: 'underline' }}>Books I own</h1>
             {displayed ? (
               <>
-                <TitleDisplay
-                  book={displayed}
+                <TitleDisplay book={displayed}>
+                  <RemoveFromLibrary
+                    removeFromLibrary={removeFromLibrary}
+                    setDisplayed={setDisplayed}
+                    displayed={displayed}
+                    ownedBooks={ownedBooks}
+                  />
+                </TitleDisplay>
+                <BookTableContainer
+                  ownedBooks={ownedBooks}
                   setDisplayed={setDisplayed}
-                  removeBookFromLibrary={removeFromLibrary}
                 />
-                <div className="table-container">
-                  <table>
-                    <tbody>
-                      <tr className="tr">
-                        <th className="th">Title</th>
-                        <th className="th">Author</th>
-                      </tr>
-                      <BookTable
-                        books={ownedBooks}
-                        setDisplayed={setDisplayed}
-                      />
-                    </tbody>
-                  </table>
-                </div>
               </>
             ) : (
-                <div>
-                  No books in your library. Search for books to add them to your
-                  library.
+              <div>
+                No books in your library. Search for books to add them to your
+                library.
               </div>
-              )}
+            )}
           </div>
         </div>
       )}

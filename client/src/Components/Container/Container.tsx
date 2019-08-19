@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { Spring } from 'react-spring/renderprops';
+import { Book } from '../../../classes/Book';
 import loadingAnimation from '../../img/loadingAnimation.svg';
+import { AddToLibrary } from '../Buttons/AddToLibrary';
+import { AddToWishlist } from '../Buttons/AddToWishlist';
 import { ResultTable } from '../ResultTable';
 import { SearchField } from '../SearchField';
 import { TitleDisplay } from '../TitleDisplay';
-import { Book } from '../../../classes/Book';
 import './Container.css';
 
 export interface ContainerProps {
@@ -63,32 +65,58 @@ export const Container: React.SFC<ContainerProps> = ({
               </div>
             </div>
           ) : (
-              <>
-                {displayed.title ? (
-                  <Spring
-                    from={{ opacity: 0 }}
-                    to={{ opacity: 1 }}
-                    config={{ duration: 300 }}
-                  >
-                    {props => (
-                      <div className="result-background" style={props}>
-                        <TitleDisplay
-                          book={displayed}
-                          addBookToLibrary={addBookToLibrary}
-                          addBookToWishlist={addBookToWishlist}
-                          library={library}
-                          wishlist={wishlist}
-                        />
-                        <ResultTable
-                          bookList={books}
-                          setDisplayed={setDisplayed}
-                        />
-                      </div>
-                    )}
-                  </Spring>
-                ) : null}
-              </>
-            )}
+            <>
+              {displayed.title ? (
+                <Spring
+                  from={{ opacity: 0 }}
+                  to={{ opacity: 1 }}
+                  config={{ duration: 300 }}
+                >
+                  {props => (
+                    <div className="result-background" style={props}>
+                      <TitleDisplay book={displayed}>
+                        <>
+                          {library
+                            .map((b: Book) => b.ISBN.ISBN_13)
+                            .includes(displayed.ISBN.ISBN_13) ? (
+                            <div>
+                              <i>You own this book</i>
+                            </div>
+                          ) : (
+                            <>
+                              <AddToLibrary
+                                book={displayed}
+                                addToLibrary={addBookToLibrary}
+                              />
+                              <br />
+                            </>
+                          )}
+                          {wishlist
+                            .map((b: Book) => b.ISBN.ISBN_13)
+                            .includes(displayed.ISBN.ISBN_13) ? (
+                            <div>
+                              <i>This book is on your wishlist.</i>
+                            </div>
+                          ) : library
+                              .map((b: Book) => b.ISBN.ISBN_13)
+                              .includes(displayed.ISBN.ISBN_13) ? null : (
+                            <AddToWishlist
+                              book={displayed}
+                              addToWishlist={addBookToWishlist}
+                            />
+                          )}
+                        </>
+                      </TitleDisplay>
+                      <ResultTable
+                        bookList={books}
+                        setDisplayed={setDisplayed}
+                      />
+                    </div>
+                  )}
+                </Spring>
+              ) : null}
+            </>
+          )}
         </div>
       )}
     </Spring>

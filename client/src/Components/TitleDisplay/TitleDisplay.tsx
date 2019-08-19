@@ -1,32 +1,17 @@
 import * as React from 'react';
 import { Spring } from 'react-spring/renderprops';
-import { AddToLibrary } from '../Buttons/AddToLibrary';
-import { AddToWishlist } from '../Buttons/AddToWishlist';
-import './TitleDisplay.css';
 import { Book } from '../../../classes/Book';
+import './TitleDisplay.css';
 
 export interface TitleDisplayProps {
   book: Book;
-  addBookToLibrary?: Function;
-  addBookToWishlist?: Function;
-  removeBookFromLibrary?: Function;
-  removeBookFromWishlist?: Function;
-  library?: Array<Book>;
-  wishlist?: Array<Book>;
-  setDisplayed?: Function;
+  children: React.ReactNode;
 }
 
 export const TitleDisplay: React.SFC<TitleDisplayProps> = ({
   book,
-  library,
-  wishlist,
-  addBookToLibrary,
-  addBookToWishlist,
-  removeBookFromLibrary,
-  removeBookFromWishlist,
-  setDisplayed
+  children
 }) => {
-  React.useEffect(() => { }, [wishlist, library]);
   return (
     <Spring
       to={{ opacity: 1 }}
@@ -58,7 +43,6 @@ export const TitleDisplay: React.SFC<TitleDisplayProps> = ({
                 <p>{book.publisher}</p>
               </div>
             )}
-
             <div className="top-info-element">
               <h3>ISBN</h3>
               {book.ISBN.ISBN_10 && <p>ISBN 10: {book.ISBN.ISBN_10}</p>}
@@ -73,68 +57,7 @@ export const TitleDisplay: React.SFC<TitleDisplayProps> = ({
                   <img src={book.thumbnail} alt="book cover" />
                 </a>
                 <p>Click image to see title on Google Books</p>
-                {addBookToLibrary &&
-                  !library!
-                    .map((b: Book) => b.ISBN.ISBN_13)
-                    .includes(book.ISBN.ISBN_13) && (
-                    <>
-                      <AddToLibrary
-                        book={book}
-                        addToLibrary={addBookToLibrary}
-                      />
-                      <br />
-                    </>
-                  )}
-                {library &&
-                  library
-                    .map((b: Book) => b.ISBN.ISBN_13)
-                    .includes(book.ISBN.ISBN_13) && (
-                    <div>
-                      <i>You own this book</i>
-                    </div>
-                  )}
-                {addBookToWishlist &&
-                  wishlist !== (undefined && null) &&
-                  library !== (undefined && null) &&
-                  !wishlist
-                    .map((b: Book) => b.ISBN.ISBN_13)
-                    .includes(book.ISBN.ISBN_13) &&
-                  !library
-                    .map((b: Book) => b.ISBN.ISBN_13)
-                    .includes(book.ISBN.ISBN_13) && (
-                    <AddToWishlist
-                      book={book}
-                      addToWishlist={addBookToWishlist}
-                    />
-                  )}
-                {wishlist &&
-                  wishlist
-                    .map((b: Book) => b.ISBN.ISBN_13)
-                    .includes(book.ISBN.ISBN_13) && (
-                    <div>
-                      <i>This book is on your wishlist.</i>
-                    </div>
-                  )}
-                {removeBookFromLibrary && (
-                  <button
-                    onClick={() => {
-                      removeBookFromLibrary(book);
-                      setDisplayed!(library ? library[0] : null);
-                    }}
-                  >
-                    Remove from library
-                  </button>
-                )}
-                {removeBookFromWishlist && (
-                  <button
-                    onClick={() => {
-                      removeBookFromWishlist(book);
-                      setDisplayed!(library ? library[0] : null);
-                    }}
-                  >
-                    Remove from wishlist
-                  </button>
-                )}
+                <>{children}</>
               </>
             </div>
             <div className="bottom-info-element">
