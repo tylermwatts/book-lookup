@@ -7,14 +7,12 @@ import { RemoveFromWishlist } from '../Buttons/RemoveFromWishlist';
 import { TitleDisplay } from '../TitleDisplay';
 
 export interface WishlistProps {
-  library: Array<Book>;
   wishlist: Array<Book>;
   addToOwned: Function;
   removeFromWishlist: Function;
 }
 
 export const Wishlist: React.SFC<WishlistProps> = ({
-  library,
   wishlist,
   addToOwned,
   removeFromWishlist
@@ -36,15 +34,14 @@ export const Wishlist: React.SFC<WishlistProps> = ({
             {displayed ? (
               <>
                 <TitleDisplay book={displayed}>
-                  <>
-                    <AddToLibrary book={displayed} addToLibrary={addToOwned} />
-                    <RemoveFromWishlist
-                      removeFromWishlist={removeFromWishlist}
-                      setDisplayed={setDisplayed}
-                      displayed={displayed}
-                      wishlist={wishlist}
-                    />
-                  </>
+                  <AddToLibrary book={displayed} addToLibrary={addToOwned} />
+                  <br />
+                  <RemoveFromWishlist
+                    removeFromWishlist={removeFromWishlist}
+                    setDisplayed={setDisplayed}
+                    displayed={displayed}
+                    wishlist={wishlist}
+                  />
                 </TitleDisplay>
                 <BookTableContainer
                   ownedBooks={wishlist}

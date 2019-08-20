@@ -1,0 +1,14 @@
+.loading-container {
+  text-align: center;
+}
+
+.loading-background {
+  display: inline-block;
+  margin: 0 auto;
+  padding: 1em;
+  background: #fcfcfc;
+}
+
+.loading-text {
+  margin: 1em;
+}

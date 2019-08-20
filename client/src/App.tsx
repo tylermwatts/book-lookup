@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Book } from '../classes/Book';
 import './App.css';
 import { About } from './Components/About';
 import { BooksOwned } from './Components/BooksOwned';
 import { Container } from './Components/Container';
 import { NavHeader } from './Components/NavHeader';
 import { Wishlist } from './Components/Wishlist';
-import { Book } from '../classes/Book';
 
-export interface AppProps { }
+export interface AppProps {}
 
 const App: React.SFC<AppProps> = () => {
   const initDisplayed: Book = {
@@ -79,14 +79,12 @@ const App: React.SFC<AppProps> = () => {
   const showSnackbar = () => {
     const x = document.getElementById('snackbar');
     x!.className = 'show';
-    setTimeout(function () {
+    setTimeout(function() {
       x!.className = x!.className.replace('show', '');
     }, 3000);
   };
   const addBookToLibrary = (book: Book) => {
-    if (
-      !library.map((b: Book) => b.ISBN.ISBN_13).includes(book.ISBN.ISBN_13)
-    ) {
+    if (!library.map((b: Book) => b.ISBN.ISBN_13).includes(book.ISBN.ISBN_13)) {
       setLibrary([...library, book]);
       if (
         wishlist.map((b: Book) => b.ISBN.ISBN_13).includes(book.ISBN.ISBN_13)
@@ -120,9 +118,7 @@ const App: React.SFC<AppProps> = () => {
     }
   };
   const removeBookFromWishlist = (book: Book) => {
-    if (
-      wishlist.map((b: Book) => b.ISBN.ISBN_13).includes(book.ISBN.ISBN_13)
-    ) {
+    if (wishlist.map((b: Book) => b.ISBN.ISBN_13).includes(book.ISBN.ISBN_13)) {
       setWishlist(wishlist.filter((b: Book) => b !== book));
       setSnackbarText('Book removed from wishlist.');
       showSnackbar();
@@ -163,7 +159,6 @@ const App: React.SFC<AppProps> = () => {
           path="/wishlist"
           render={() => (
             <Wishlist
-              library={library}
               wishlist={wishlist}
               removeFromWishlist={removeBookFromWishlist}
               addToOwned={addBookToLibrary}
